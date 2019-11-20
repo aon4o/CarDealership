@@ -1,22 +1,26 @@
 <?php
 
-Route::get('/welcome', function()
+Route::get('/', function()
 {
-    return view ('welcome');
+    return view('index');
 });
-
-Route::get('/about', function()
+Route::get('/brands', function()
 {
-    return view ('about', [
-        'articles' => App\Article::take(3)->latest()->get()
-    ]);
+    return view('brands');
 });
-
-Route::get('articles', function()
+Route::get('/customers', function()
 {
-    return view('articles', [
-        'articles' => App\Article::latest()->get()
-    ]);
+    return view('customers');
 });
-
-Route::get('articles/{article}', 'ArticlesController@show');
+Route::get('/models', function()
+{
+    return view('models');
+});
+Route::get('/rented_cars', function()
+{
+    return view('rented_cars');
+});
+Route::get('/vehicles', function()
+{
+    return view('vehicles');
+});
