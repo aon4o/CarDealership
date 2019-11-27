@@ -9,6 +9,7 @@
 	<h1>Brand Create</h1>
 	<hr></hr>
 	<form action="{{ route('brands.store') }}" method="post">
+        @csrf
 		<input type="text" name="name" />
 		<input type="submit" value="Submit"/>
 	</form>
