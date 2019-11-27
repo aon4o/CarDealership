@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Project;
+use App\Model;
 use Illuminate\Http\Request;
 
-class ProjectsController extends Controller
+class ModelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        return view('models.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        return view('models.create');
     }
 
     /**
@@ -35,51 +35,51 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('models.store');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  Model $model
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show(Model $model)
     {
-        //
+        return view('models.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project  $project
+     * @param  Model $model
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit(Model $model)
     {
-        //
+        return view('models.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project  $project
+     * @param  Model $model
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, Model $model)
     {
-        //
+        return view('models.update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project  $project
+     * @param  Model $model
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy(Model $model)
     {
-        //
+        return view('models.destroy');
     }
 }

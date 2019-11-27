@@ -4,7 +4,7 @@
 	<title>Models INDEX</title>
 </head>
 <body>
-	<a href="../index.php">Back to Main</a>
+	<a href="/">Back to Main</a>
 	<h1>Models</h1>
 	<form action="index.php" method="get">
 		<input type="hidden" name="search" value="true" />
