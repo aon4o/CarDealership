@@ -14,9 +14,9 @@ class BrandsController extends Controller
      */
     public function index()
     {
-        $brands = \DB::table('brands')->get();
-        dd($brands);
-        return view('brands.index', [ 'brands' => $brands ]);
+        $brands = Brand::all();
+
+        return view('brands.index', compact('brands'));
     }
 
     /**
@@ -52,7 +52,7 @@ class BrandsController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        return view('brands.show', ['brand' => $brand]);
     }
 
     /**
@@ -61,9 +61,8 @@ class BrandsController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Brand $brand)
     {
-        $brand = Brand::find($id);
         return view('brands.edit', ['brand' => $brand]);
     }
 
@@ -74,10 +73,8 @@ class BrandsController extends Controller
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Brand $brand)
     {
-        $brand = Brand::find($id);
-
         $brand->name = $request['name'];
         $brand->save();
 
@@ -92,6 +89,7 @@ class BrandsController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return redirect(route('brands.index'));
     }
 }

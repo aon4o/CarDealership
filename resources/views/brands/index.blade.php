@@ -12,44 +12,31 @@
 		<input type="submit" value="Search" />
 	</form>
 	<hr></hr>
-	<a href="brands/create">Create new</a></br>
-
-
-
-
-
-
-
-
-
-    <table><tr>
-            @foreach ($rows[0] as $columnName => $value)
-            <th>  $columnName </th>
-            @endforeach
-            </tr>
-        @foreach ($rows as $row)
+	<a href="{{ route('brands.create') }}">Create new</a></br>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($brands as $brand)
             <tr>
-            @foreach ($row as $value)
-                        @if($id==null)
-                            echo '<td><a href="show.php?id=' . $row['id'] . '">'. htmlspecialchars($value) . '</a></td>';
-                        @else
-                            <td>htmlspecialchars($value)</td>
-                        @endif
-            <td><a href="edit.php?id=' . $row['id'] . '">Edit</a>
-                <td> <form action="delete.php" method="post"> <input type="hidden" name="id" value="' . $row['id'] . '"> <input type="submit" value="Delete" > </form> </td>
-            @endforeach
+                <td>{{ $brand->id }}</td>
+                <td><a href="{{ route('brands.show', ['brand' => $brand]) }}">{{ $brand->name }}</a></td>
+                <td><a href="{{ route('brands.edit', ['brand' => $brand]) }}">Edit</a></td>
+                <td><form action={{ route('brands.destroy', ['brand' => $brand]) }} method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type='hidden' name='id' value="{{$brand->id}}">
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
             </tr>
         @endforeach
+        </tbody>
     </table>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

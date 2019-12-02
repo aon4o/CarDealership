@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Brands EDIT</title>
 </head>
@@ -7,8 +7,8 @@
 	<a href="/">Back to Main</a> </br>
 	<a href="{{route('brands.index')}}">Back to Brands</a>
 	<h1>Brand Edit</h1>
-	<hr></hr>
-	<form action="/brands/{{$brand->id}}" method="POST">
+	<hr>
+	<form action={{ route('brands.update', ['brand' => $brand]) }} method="POST">
         @csrf
         @method('PUT')
 		<input type='hidden' name='id' value="{{$brand->id}}">
