@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="testDB" uuid="2ff93b4d-d862-4786-9a05-11b5d2a25894">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/testDB</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="testLaravel" uuid="ce444f0c-7702-45a9-a3b2-094edeaa35cf">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/testLaravel</jdbc-url>
+    </data-source>
+  </component>
+</project>

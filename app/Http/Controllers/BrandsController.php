@@ -37,9 +37,9 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        $brand = new Brand;
-        $brand->name = $request['name'];
-        $brand->save();
+        Brand::Create(request()->validate([
+            'name' => 'required'
+        ]));
 
         return redirect(route('brands.index'));
     }
@@ -75,8 +75,9 @@ class BrandsController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        $brand->name = $request['name'];
-        $brand->save();
+        $brand->update($request->validate([
+            'name' => 'required'
+        ]));
 
         return redirect(route('brands.index'));
     }
