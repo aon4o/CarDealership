@@ -15,13 +15,15 @@ class CreateVehiclesTable extends Migration
     {
         Schema::create('vehicles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('model_id');
+            $table->unsignedBigInteger('model_id');
             $table->smallInteger('engine_volume');
             $table->smallInteger('horse_power');
             $table->string('color', 20);
             $table->year('year_made');
             $table->string('reg_num', 20);
             $table->timestamps();
+
+            $table->foreign('model_id')->references('id')->on('models');
         });
     }
 
