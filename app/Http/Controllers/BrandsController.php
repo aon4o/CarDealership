@@ -87,6 +87,7 @@ class BrandsController extends Controller
      *
      * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Brand $brand)
     {
