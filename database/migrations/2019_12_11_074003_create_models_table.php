@@ -19,7 +19,10 @@ class CreateModelsTable extends Migration
             $table->unsignedBigInteger('brand_id');
             $table->timestamps();
 
-            $table->foreign('brand_id')->references('id')->on('brands');
+            $table->foreign('brand_id')
+                ->references('id')
+                ->on('brands')
+                ->onDelete('cascade');
         });
     }
 

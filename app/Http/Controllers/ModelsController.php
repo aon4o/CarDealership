@@ -14,7 +14,8 @@ class ModelsController extends Controller
      */
     public function index()
     {
-        return view('models.index');
+        $models = Model::all();
+        return view('models.index', compact('models'));
     }
 
     /**
@@ -35,7 +36,12 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        return view('models.store');
+        Model::create($request->validate([
+            'name' => 'required',
+            //'brand' => 'required'
+        ]));
+
+        return redirect(route('models.index'));
     }
 
     /**
@@ -46,7 +52,7 @@ class ModelsController extends Controller
      */
     public function show(Model $model)
     {
-        return view('models.show');
+        return view('models.show', ['model' => $model] );
     }
 
     /**

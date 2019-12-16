@@ -23,7 +23,10 @@ class CreateVehiclesTable extends Migration
             $table->string('reg_num', 20);
             $table->timestamps();
 
-            $table->foreign('model_id')->references('id')->on('models');
+            $table->foreign('model_id')
+                ->references('id')
+                ->on('models')
+                ->onDelete('cascade');
         });
     }
 
