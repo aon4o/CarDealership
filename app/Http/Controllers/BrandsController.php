@@ -12,10 +12,19 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        $brands = Brand::all();
-        return view('brands.index', compact('brands'));
+        if($request->has('search'))
+        {
+            $brands = Brand::where('name', 'like', $request->search . '%')->get();
+            return view('brands.index', compact('brands'));
+        }
+        else
+        {
+            $brands = Brand::all();
+            return view('brands.index', compact('brands'));
+        }
+
     }
 
     /**
@@ -36,7 +45,7 @@ class BrandsController extends Controller
      */
     public function store(Request $request)
     {
-        Brand::Create(request()->validate([
+        Brand::Create($request->validate([
             'name' => 'required'
         ]));
 

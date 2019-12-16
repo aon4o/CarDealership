@@ -6,13 +6,13 @@
 <body>
 	<a href="/">Back to Main</a>
 	<h1>Brands</h1>
-	<form action="/" method="get">
-		<input type="hidden" name="search" value="true" />
-		Search by name: <input type="text" name="name" />
+	<form action="{{ route('brands.index') }}" method="get">
+		Search by name: <input type="text" name="search" />
 		<input type="submit" value="Search" />
 	</form>
-	<hr></hr>
+    <hr/>
 	<a href="{{ route('brands.create') }}">Create new</a></br>
+    @if($brands->isNotEmpty())
     <table>
         <thead>
         <tr>
@@ -38,5 +38,8 @@
         @endforeach
         </tbody>
     </table>
+    @else
+        <p>There's nothing to show!</p>
+    @endif
 </body>
 </html>

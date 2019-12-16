@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Models INDEX</title>
 </head>
@@ -12,8 +12,8 @@
 		Search by brand: <input type="text" name="brand" />
 		<input type="submit" value="Search" />
 	</form>
-	<hr></hr>
-	<a href="{{ route('models.create') }}">Create new</a></br>
+    <hr/>
+	<a href="{{ route('models.create') }}">Create new</a><br>
     <table>
         <thead>
         <tr>
