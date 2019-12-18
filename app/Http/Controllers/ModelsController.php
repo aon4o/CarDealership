@@ -65,7 +65,8 @@ class ModelsController extends Controller
      */
     public function edit(Model $model)
     {
-        return view('models.edit');
+        $brands = Brand::all();
+        return view('models.edit', ['brands'=>$brands, 'model'=>$model]);
     }
 
     /**
@@ -77,7 +78,11 @@ class ModelsController extends Controller
      */
     public function update(Request $request, Model $model)
     {
-        return view('models.update');
+        $model->update($request->validate([
+            'name'=>'required',
+            'brand_id'=>'required'
+        ]));
+        return redirect(route('models.index'));
     }
 
     /**

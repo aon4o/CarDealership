@@ -12,10 +12,7 @@
         @csrf
         @method('PUT')
 		<input type='hidden' name='id' value="{{$brand->id}}">
-		NEW Brand name: <input type="text" name="name" value="{{ $brand->name }}"/></br>
-        @if($errors->has('name'))
-            <p>{{ $errors->first('name') }}</p>
-        @endif
+		NEW Brand name: <input type="text" name="name" value="{{ $brand->name }}" required/></br>
 		<input type="submit" value="Submit"/>
 	</form>
 </body>
