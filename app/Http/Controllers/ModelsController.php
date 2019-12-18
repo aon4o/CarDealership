@@ -13,10 +13,17 @@ class ModelsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $models = Model::all();
-        return view('models.index', compact('models'));
+        if($request->has('search1'))
+            $models = Model::where('name', 'like', $request->name . '%')->get();
+        elseif($request->has('search2'))
+            $models = Model::where('brand_id', '=', $request->brand_id)->get();
+        else
+            $models = Model::all();
+
+        $brands = Brand::all();
+        return view('models.index', ['models'=>$models, 'brands'=>$brands]);
     }
 
     /**

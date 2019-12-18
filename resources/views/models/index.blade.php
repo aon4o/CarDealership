@@ -6,12 +6,21 @@
 <body>
 	<a href="/">Back to Main</a>
 	<h1>Models</h1>
-	<form action="" method="get">
-		<input type="hidden" name="search" value="true" />
-		Search by name: <input type="text" name="name" />
-		Search by brand: <input type="text" name="brand" />
-		<input type="submit" value="Search" />
-	</form>
+    <form action="{{ route('models.index') }}" method="get">
+        <input type="hidden" name="search1" value="true" />
+        Search by name: <input type="text" name="name" />
+        <input type="submit" value="Search" />
+    </form>
+    <br>
+    <form action="{{ route('models.index') }}" method="get">
+        <input type="hidden" name="search2" value="true" />
+        Search by brand: <select name="brand_id" >
+            @foreach($brands as $brand)
+                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+            @endforeach
+        </select>
+        <input type="submit" value="Search" />
+    </form>
     <hr/>
 	<a href="{{ route('models.create') }}">Create new</a><br>
     <table>
