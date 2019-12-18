@@ -11,7 +11,7 @@
 	<form action="{{ route('models.store') }}" method="post">
         @csrf
 		Model's name:
-        <input type="text" name="name" required/>
+        <input type="text" name="name" placeholder="Name" required/>
         @if($errors->has('name'))
             <p>{{ $errors->first('name') }}</p>
         @endif
