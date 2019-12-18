@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Model;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class ModelsController extends Controller
      */
     public function create()
     {
-        return view('models.create');
+        $brands = Brand::all();
+        return view('models.create', compact('brands'));
     }
 
     /**
@@ -36,9 +38,9 @@ class ModelsController extends Controller
      */
     public function store(Request $request)
     {
-        Model::create($request->validate([
+        Model::Create($request->validate([
             'name' => 'required',
-            //'brand' => 'required'
+            'brand_id' => 'required'
         ]));
 
         return redirect(route('models.index'));
@@ -81,11 +83,13 @@ class ModelsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Model $model
+     * @param Model $model
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Model $model)
     {
-        return view('models.destroy');
+        $model->delete();
+        return redirect(route('models.index'));
     }
 }

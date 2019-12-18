@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model as BaseModel;
 
 class Model extends BaseModel
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'brand_id'];
 
     public function brand()
     {
