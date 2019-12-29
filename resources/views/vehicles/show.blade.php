@@ -12,16 +12,26 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Model</th>
             <th>Brand</th>
+            <th>Engine volume</th>
+            <th>Horse power</th>
+            <th>Color</th>
+            <th>Year made</th>
+            <th>Registration number</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td>{{ $vehicle->id }}</td>
-            <td>{{ $vehicle->name }}</td>
-            <td><a href="{{ route('brands.show', ['brand' => $vehicle->brand]) }}">{{ $vehicle->brand->name }}</a></td>
+            <td><a href="{{route('models.show', ['model' => $vehicle->model])}}">{{ $vehicle->model->name }}</a></td>
+            <td><a href="{{ route('brands.show', ['brand' => $vehicle->model->brand]) }}">{{ $vehicle->model->brand->name }}</a></td>
+            <td>{{ $vehicle->engine_volume }}</td>
+            <td>{{ $vehicle->horse_power }}</td>
+            <td>{{ $vehicle->color }}</td>
+            <td>{{ $vehicle->year_made }}</td>
+            <td>{{ $vehicle->reg_num }}</td>
             <td><a href="{{ route('vehicles.edit', ['vehicle' => $vehicle]) }}">Edit</a></td>
             <td><form action={{ route('vehicles.destroy', ['vehicle' => $vehicle]) }} method="POST">
                     @csrf

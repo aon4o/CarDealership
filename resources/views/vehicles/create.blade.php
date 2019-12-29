@@ -16,9 +16,6 @@
                 <option value="{{ $model->id }}">{{ $model->name ." - ". $model->brand->name }}</option>
             @endforeach
         </select>
-        @if($errors->has('model_id'))
-            <p>{{ $errors->first('model_id') }}</p>
-        @endif
         <br><br>
         Engine volume: <input type="number" name="engine_volume" step="10" maxlength="6" required/><br><br>
         Horse power: <input type="number" name="horse_power" step="50" maxlength="6" required/><br><br>

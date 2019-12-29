@@ -8,18 +8,13 @@
     <h1>Vehicles</h1>
     <form action="{{ route('vehicles.index') }}" method="get">
         <input type="hidden" name="search1" value="true" />
-        Search by model: <input type="text" name="name" />
-        <input type="submit" value="Search" />
-    </form><br>
-    <form action="{{ route('vehicles.index') }}" method="get">
-        <input type="hidden" name="search2" value="true" />
-        Search by brand: <select name="brand_id" >
-            @foreach($brands as $brand)
-                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+        Search by model: <select name="model_id">
+            @foreach($models as $model)
+                    <option value="{{ $model->id }}">{{ $model->name.' - '.$model->brand->name }}</option>
             @endforeach
         </select>
         <input type="submit" value="Search" />
-    </form>
+    </form><br>
     <hr/>
     <a href="{{ route('vehicles.create') }}">Create new</a><br>
     @if($vehicles->isNotEmpty())
@@ -36,8 +31,8 @@
             @foreach ($vehicles as $vehicle)
                 <tr>
                     <td><a href="{{ route('vehicles.show', ['vehicle' => $vehicle]) }}">{{ $vehicle->id }}</a></td>
-                    <td><a href="{{ route('models.show', ['model' => $vehicle->model->id]) }}">{{ $vehicle->model->name }}</a></td>
-                    <td><a href="{{ route('brands.show', ['brand' => $vehicle->model->brand->id]) }}">{{ $vehicle->model->brand->name }}</a></td>
+                    <td><a href="{{ route('models.show', ['model' => $vehicle->model]) }}">{{ $vehicle->model->name }}</a></td>
+                    <td><a href="{{ route('brands.show', ['brand' => $vehicle->model->brand]) }}">{{ $vehicle->model->brand->name }}</a></td>
                     <td><a href="{{ route('vehicles.edit', ['vehicle' => $vehicle]) }}">Edit</a></td>
                     <td><form action={{ route('vehicles.destroy', ['vehicle' => $vehicle]) }} method="POST">
                             @csrf

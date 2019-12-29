@@ -11,7 +11,6 @@
 <form action={{ route('models.update', ['model' => $model]) }} method="POST">
     @csrf
     @method('PUT')
-    <input type='hidden' name='id' value="{{$model->id}}">
     Model name: <input type="text" name="name" value="{{ $model->name }}"/></br>
     Model brand:
     <select name="brand_id">

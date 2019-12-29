@@ -17,14 +17,13 @@ class VehiclesController extends Controller
     public function index(Request $request)
     {
         if($request->has('search1'))
-            $vehicles = Vehicle::where('name', 'like', $request->name . '%')->get();
-        elseif($request->has('search2'))
-            $vehicles = Vehicle::where('brand_id', '=', $request->brand_id)->get();
+            $vehicles = Vehicle::where('model_id', '=', $request->model_id)->get();
         else
             $vehicles = Vehicle::all();
 
+        $models = Model::all();
         $brands = Brand::all();
-        return view('vehicles.index', ['vehicles'=>$vehicles, 'brands'=>$brands]);
+        return view('vehicles.index', ['vehicles'=>$vehicles, 'models' => $models, 'brands'=>$brands]);
     }
 
     /**
@@ -77,7 +76,8 @@ class VehiclesController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        return view('vehicles.edit');
+        $models = Model::all();
+        return view('vehicles.edit', ['vehicle' => $vehicle, 'models' => $models]);
     }
 
     /**
@@ -89,7 +89,15 @@ class VehiclesController extends Controller
      */
     public function update(Request $request, Vehicle $vehicle)
     {
-        return view('vehicles.update');
+        $vehicle->update($request->validate([
+            'model_id' => 'required',
+            'engine_volume' => 'required',
+            'horse_power' => 'required',
+            'color' => 'required',
+            'year_made' => 'required',
+            'reg_num' => 'required'
+        ]));
+        return redirect(route('vehicles.index'));
     }
 
     /**
@@ -100,6 +108,7 @@ class VehiclesController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        return view('vehicles.destroy');
+        $vehicle->delete();
+        return redirect(route('vehicles.index'));
     }
 }
