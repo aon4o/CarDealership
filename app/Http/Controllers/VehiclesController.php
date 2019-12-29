@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
+use App\Model;
 use App\Vehicle;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,17 @@ class VehiclesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('vehicles.index');
+        if($request->has('search1'))
+            $vehicles = Vehicle::where('name', 'like', $request->name . '%')->get();
+        elseif($request->has('search2'))
+            $vehicles = Vehicle::where('brand_id', '=', $request->brand_id)->get();
+        else
+            $vehicles = Vehicle::all();
+
+        $brands = Brand::all();
+        return view('vehicles.index', ['vehicles'=>$vehicles, 'brands'=>$brands]);
     }
 
     /**
@@ -24,7 +34,8 @@ class VehiclesController extends Controller
      */
     public function create()
     {
-        return view('vehicles.create');
+        $models = Model::all();
+        return view('vehicles.create', ['models' => $models]);
     }
 
     /**
@@ -35,7 +46,16 @@ class VehiclesController extends Controller
      */
     public function store(Request $request)
     {
-        return view('vehicles.store');
+        Vehicle::Create($request->validate([
+            'model_id' => 'required',
+            'engine_volume' => 'required',
+            'horse_power' => 'required',
+            'color' => 'required',
+            'year_made' => 'required',
+            'reg_num' => 'required'
+        ]));
+
+        return redirect(route('vehicles.index'));
     }
 
     /**
@@ -46,7 +66,7 @@ class VehiclesController extends Controller
      */
     public function show(Vehicle $vehicle)
     {
-        return view('vehicles.show');
+        return view('vehicles.show', ['vehicle' => $vehicle]);
     }
 
     /**

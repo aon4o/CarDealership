@@ -19,7 +19,7 @@
         <tbody>
         <tr>
             <td>{{ $brand->id }}</td>
-            <td>{{ $brand->name }}</a></td>
+            <td><a>{{ $brand->name }}</a></td>
             <td><a href="{{ route('brands.edit', ['brand' => $brand]) }}">Edit</a></td>
             <td><form action={{ route('brands.destroy', ['brand' => $brand]) }} method="POST">
                     @csrf

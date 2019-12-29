@@ -12,7 +12,7 @@
         @csrf
         @method('PUT')
 		<input type='hidden' name='id' value="{{$brand->id}}">
-		NEW Brand name: <input type="text" name="name" value="{{ $brand->name }}" required/></br>
+		NEW Brand name: <input type="text" name="name" value="{{ $brand->name }}" autofocus required/></br>
 		<input type="submit" value="Submit"/>
 	</form>
 </body>

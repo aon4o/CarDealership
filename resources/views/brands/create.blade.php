@@ -10,7 +10,7 @@
 	<hr></hr>
 	<form action="{{ route('brands.store') }}" method="post">
         @csrf
-		<input type="text" name="name" placeholder="Name"/>
+		<input type="text" name="name" placeholder="Name" autofocus/>
         @if($errors->has('name'))
             <p>{{ $errors->first('name') }}</p>
         @endif

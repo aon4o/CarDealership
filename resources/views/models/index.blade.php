@@ -23,6 +23,7 @@
     </form>
     <hr/>
 	<a href="{{ route('models.create') }}">Create new</a><br>
+    @if($models->isNotEmpty())
     <table>
         <thead>
         <tr>
@@ -50,5 +51,8 @@
         @endforeach
         </tbody>
     </table>
+    @else
+        <p>There's nothing to show!</p>
+    @endif
 </body>
 </html>
