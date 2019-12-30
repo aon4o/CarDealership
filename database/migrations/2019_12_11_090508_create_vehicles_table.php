@@ -18,7 +18,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('model_id');
             $table->smallInteger('engine_volume');
             $table->smallInteger('horse_power');
-            $table->string('color', 20);
+            $table->string('color', 6);
             $table->year('year_made');
             $table->string('reg_num', 20);
             $table->timestamps();

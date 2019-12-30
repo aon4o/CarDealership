@@ -21,7 +21,7 @@
         Horse power: <input type="number" name="horse_power" step="50" maxlength="6" required/><br><br>
         Color: <input type="color" name="color" required/><br><br>
         Year made: <input type="number" name="year_made" size="4" required /><br><br>
-        Reg number: <input type="text" name="reg_num" required minlength="6" maxlength="20"/><br><br>
+        Reg number: <input type="text" name="reg_num" minlength="6" maxlength="20" required/><br><br>
 		<input type="submit" value="Submit"/>
 	</form>
 </body>
