@@ -77,7 +77,10 @@ class CustomersController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customers.edit', ['customer'=>$customer]);
+        $date = new DateTime(date("Y-m-d"));
+        $date->modify('-1 year');
+
+        return view('customers.edit', ['customer'=>$customer, 'date' => $date]);
     }
 
     /**
