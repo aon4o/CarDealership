@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use DateTime;
 use Illuminate\Http\Request;
 
 class CustomersController extends Controller
@@ -10,11 +11,21 @@ class CustomersController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('customers.index');
+        if($request->has('search1'))
+            $customers = Customer::where('first_name', 'like', $request->name . '%')->get();
+        elseif($request->has('search2'))
+            $customers = Customer::where('last_name', 'like', $request->name . '%')->get();
+        else
+            $customers = Customer::all();
+
+        //todo reworc the search method
+
+        return view('customers.index', ['customers' => $customers]);
     }
 
     /**
@@ -24,7 +35,10 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        return view('customers.create');
+        $date = new DateTime(date("Y-m-d"));
+        $date->modify('-1 year');
+
+        return view('customers.create',['date'=>$date]);
     }
 
     /**
@@ -35,7 +49,13 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        return view('customers.store');
+        $customer = Customer::Create($request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'born_at' => 'required',
+            'egn' => 'required'
+        ]));
+        return view('customers.show', ['customer'=>$customer]);
     }
 
     /**
@@ -46,7 +66,7 @@ class CustomersController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('customers.show{$customer}');
+        return view('customers.show', ['customer'=>$customer]);
     }
 
     /**
@@ -57,7 +77,7 @@ class CustomersController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customers.edit{$customer}');
+        return view('customers.edit', ['customer'=>$customer]);
     }
 
     /**
@@ -69,7 +89,13 @@ class CustomersController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
-        return view('customers.update{$customer}');
+        $customer->update($request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'born_at' => 'required',
+            'egn' => 'required'
+        ]));
+        return view('customers.show', ['customer' => $customer]);
     }
 
     /**
@@ -80,6 +106,7 @@ class CustomersController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        return view('customers.destroy');
+        $customer->delete();
+        return redirect(route('customers.index'));
     }
 }
