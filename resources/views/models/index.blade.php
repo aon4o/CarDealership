@@ -55,6 +55,13 @@
                         <input type="submit" value="Delete"/>
                     </form>
                 </td>
+                <td>
+                    <form action="{{ route('vehicles.index') }}" method="get">
+                        <input type="hidden" name="search1" value="true" />
+                        <input type="hidden" name="model_id" value="{{ $model->id }}">
+                        <input type="submit" value="Get Vehicles" />
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

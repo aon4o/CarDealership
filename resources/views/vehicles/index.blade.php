@@ -9,9 +9,17 @@
     <form action="{{ route('vehicles.index') }}" method="get">
         <input type="hidden" name="search1" value="true" />
         Search by model: <select name="model_id">
-            @foreach($models as $model)
+        @foreach($models as $model)
+            @if(isset($_GET['model_id']))
+                @if($_GET['model_id'] == $model->id)
+                    <option value="{{ $model->id }}" selected>{{ $model->name.' - '.$model->brand->name }}</option>
+                @else
                     <option value="{{ $model->id }}">{{ $model->name.' - '.$model->brand->name }}</option>
-            @endforeach
+                @endif
+            @else
+                <option value="{{ $model->id }}">{{ $model->name.' - '.$model->brand->name }}</option>
+            @endif
+        @endforeach
         </select>
         <input type="submit" value="Search" />
     </form><br>

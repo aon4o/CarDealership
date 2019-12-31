@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>Models SHOW</title>
 </head>
 <body>
-	<a href="/">Back to Main</a></br>
-	<a href="{{ route('models.index') }}">Back to Brands</a>
+	<a href="/">Back to Main</a><br>
+    <a href="{{ route('models.index') }}">Back to Models</a>
 	<h1>Model Show</h1>
-	<hr></hr>
+    <hr/>
     <table>
         <thead>
         <tr>
@@ -30,9 +30,15 @@
                     <input type="submit" value="Delete"/>
                 </form>
             </td>
+            <td>
+                <form action="{{ route('vehicles.index') }}" method="get">
+                    <input type="hidden" name="search1" value="true" />
+                    <input type="hidden" name="model_id" value="{{ $model->id }}">
+                    <input type="submit" value="Get Vehicles" />
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>
 </body>
 </html>
-<!--todo add a way to show all the vehicles this brand owns-->
