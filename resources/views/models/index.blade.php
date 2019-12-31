@@ -8,15 +8,23 @@
 	<h1>Models</h1>
     <form action="{{ route('models.index') }}" method="get">
         <input type="hidden" name="search1" value="true" />
-        Search by name: <input type="text" name="name" />
+        Search by name: <input type="text" name="name" value="{{ $_GET['name'] ?? '' }}"/>
         <input type="submit" value="Search" />
     </form>
     <br>
     <form action="{{ route('models.index') }}" method="get">
         <input type="hidden" name="search2" value="true" />
-        Search by brand: <select name="brand_id" >
+        Search by brand: <select name="brand_id">
             @foreach($brands as $brand)
-                <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                @if(isset($_GET['brand_id']))
+                    @if($brand->id == $_GET['brand_id'])
+                        <option value="{{ $brand->id }}" selected>{{ $brand->name }}</option>
+                    @else
+                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                    @endif
+                @else
+                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                @endif
             @endforeach
         </select>
         <input type="submit" value="Search" />

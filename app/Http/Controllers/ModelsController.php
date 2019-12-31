@@ -22,7 +22,7 @@ class ModelsController extends Controller
         else
             $models = Model::all();
 
-        //todo reworc the search method
+        //todo rework the search method
 
         $brands = Brand::all();
         return view('models.index', ['models'=>$models, 'brands'=>$brands]);
