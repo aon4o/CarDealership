@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Customer;
 use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CustomersController extends Controller
 {
@@ -12,18 +13,21 @@ class CustomersController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(Request $request)
     {
-        if($request->has('search1'))
-            $customers = Customer::where('first_name', 'like', $request->name . '%')->get();
-        elseif($request->has('search2'))
-            $customers = Customer::where('last_name', 'like', $request->name . '%')->get();
-        else
+        if($request->has('search')) {
+            $customers = Customer::where([
+                ['first_name', 'like', $request->first_name . '%'],
+                ['last_name', 'like', $request->last_name . '%']
+            ])->get();
+        }
+        else {
             $customers = Customer::all();
+        }
 
-        //todo reworc the search method
+        //todo rework the search method
 
         return view('customers.index', ['customers' => $customers]);
     }
@@ -31,7 +35,7 @@ class CustomersController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -44,8 +48,8 @@ class CustomersController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -61,8 +65,8 @@ class CustomersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return Response
      */
     public function show(Customer $customer)
     {
@@ -72,8 +76,8 @@ class CustomersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return Response
      */
     public function edit(Customer $customer)
     {
@@ -86,9 +90,9 @@ class CustomersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Customer $customer
+     * @return Response
      */
     public function update(Request $request, Customer $customer)
     {
@@ -104,8 +108,8 @@ class CustomersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
+     * @param Customer $customer
+     * @return Response
      */
     public function destroy(Customer $customer)
     {

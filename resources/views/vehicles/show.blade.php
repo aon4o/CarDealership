@@ -29,7 +29,7 @@
             <td><a href="{{ route('brands.show', ['brand' => $vehicle->model->brand]) }}">{{ $vehicle->model->brand->name }}</a></td>
             <td>{{ $vehicle->engine_volume }}</td>
             <td>{{ $vehicle->horse_power }}</td>
-            <td>{{ $vehicle->color }}</td>
+            <td><p style="background-color:{{ $vehicle->color }};">{{ $vehicle->color }}</p></td>
             <td>{{ $vehicle->year_made }}</td>
             <td>{{ $vehicle->reg_num }}</td>
             <td><a href="{{ route('vehicles.edit', ['vehicle' => $vehicle]) }}">Edit</a></td>

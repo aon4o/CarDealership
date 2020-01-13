@@ -7,13 +7,9 @@
 	<a href="/">Back to Main</a>
 	<h1>Customers</h1>
     <form action="{{ route('customers.index') }}" method="get">
-        <input type="hidden" name="search1" value="true" />
-        Search by first name: <input type="text" name="name" />
-        <input type="submit" value="Search" />
-    </form>
-    <form action="{{ route('customers.index') }}" method="get">
-        <input type="hidden" name="search2" value="true" />
-        Search by last name: <input type="text" name="name" />
+        <input type="hidden" name="search" value="true" />
+        Search by first name: <input type="text" name="first_name" value="{{ $_GET['first_name'] ?? ''}}"/>
+        Search by last name: <input type="text" name="last_name" value="{{ $_GET['last_name'] ?? '' }}"/>
         <input type="submit" value="Search" />
     </form>
     <!--todo remake the search method-->
