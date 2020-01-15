@@ -1,3 +1,14 @@
+@extends('layouts.layout')
+
+@section('title', 'Brands Create')
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
