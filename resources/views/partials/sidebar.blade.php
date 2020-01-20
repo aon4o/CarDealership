@@ -1,4 +1,4 @@
-<nav class="navbar bg-dark navbar-dark border border-left-0">
+<nav class="navbar bg-dark navbar-dark border">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
