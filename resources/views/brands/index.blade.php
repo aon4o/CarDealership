@@ -3,16 +3,20 @@
 @section('title', 'Brands INDEX')
 
 @section('content')
-    <div class="row bg-dark">
-        <h1 class="col-12 text-white-50">Brands</h1>
-        <form class="col-12" action="{{ route('brands.index') }}" method="get">
-            <p class="text-white-50">Search by name:</p><input  type="text" name="search" />
-            <input type="submit" value="Search" />
+    <div class="row m-2">
+        <h1 class="col-12">Brands</h1>
+        <form class="form-inline col-12" action="{{ route('brands.index') }}" method="get">
+            <div class="form-group">
+                <label class="text-white-50 mr-2 mb-2" for="email">Search by name:</label>
+                <input class="form-control mb-2 mr-2" id="email" type="text" name="search" placeholder="Name"/>
+                <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
+            </div>
         </form>
-        <a class="col" href="{{ route('brands.create') }}">Create new</a><br>
+        <a class="btn btn-dark btn-outline-light m-2" href="{{ route('brands.create') }}">Create new</a><br>
         <div class="w-100"></div>
         @if($brands->isNotEmpty())
-            <table>
+        <div class="m-2">
+            <table class="table table-hover table-bordered table-striped text-white-50">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -24,26 +28,26 @@
                 @foreach ($brands as $brand)
                     <tr>
                         <td>{{ $brand->id }}</td>
-                        <td><a href="{{ route('brands.show', ['brand' => $brand]) }}">{{ $brand->name }}</a></td>
-                        <td><a href="{{ route('brands.edit', ['brand' => $brand]) }}">Edit</a></td>
-                        <td><form action={{ route('brands.destroy', ['brand' => $brand]) }} method="POST">
+                        <td><a class="btn btn-dark" href="{{ route('brands.show', ['brand' => $brand]) }}">{{ $brand->name }}</a></td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ route('brands.edit', ['brand' => $brand]) }}">Edit</a>
+                            <form action={{ route('brands.destroy', ['brand' => $brand]) }} method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <input type='hidden' name='id' value="{{$brand->id}}">
-                                <input type="submit" value="Delete"/>
+                                <input class="btn btn-danger" type="submit" value="Delete"/>
                             </form>
-                        </td>
-                        <td>
-                            <form action="{{ route('models.index') }}" method="get">
+                            <form action="{{ route('models.index') }}" method="get" style="display: inline-block;">
                                 <input type="hidden" name="search2" value="true" />
                                 <input type="hidden" name="brand_id" value="{{ $brand->id }}">
-                                <input type="submit" value="Get Models" />
+                                <input class="btn btn-info" type="submit" value="Get Models" />
                             </form>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+        </div>
         @else
             <p>There's nothing to show!</p>
         @endif

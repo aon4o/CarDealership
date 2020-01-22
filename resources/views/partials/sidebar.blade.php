@@ -1,9 +1,9 @@
-<nav class="navbar bg-dark navbar-dark border">
+<nav class="navbar navbar-dark border">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse show" id="collapsibleNavbar">
-        <ul class="navbar-nav navbar-dark">
+        <ul class="navbar-nav ">
             <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('brands.index') }}">Brands</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('models.index') }}">Models</a></li>
