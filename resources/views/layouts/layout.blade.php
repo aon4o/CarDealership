@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Car dealership</title>
+    <title>@yield('title', 'Car Dealership')</title>
     <link rel="stylesheet" href="{{ asset('bootstrap-4.4.1-dist/css/bootstrap.min.css') }}">
 </head>
 <body class="bg-light">
