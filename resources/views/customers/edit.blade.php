@@ -3,10 +3,9 @@
 @section('title', 'Customers EDIT')
 
 @section('content')
-    <div>
-        <h1>Customer Edit</h1>
-        <hr>
-        <form action={{ route('customers.update', ['customer' => $customer]) }} method="POST">
+    <div class="row m-2">
+        <h1 class="col-12">Customer Edit</h1>
+        <form class="form-inline col-12" action={{ route('customers.update', ['customer' => $customer]) }} method="POST">
             @csrf
             @method('PUT')
             First name: <input type="text" name="first_name" placeholder="First name" value="{{ $customer->first_name }}" required/><br><br>
