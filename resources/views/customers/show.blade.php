@@ -3,10 +3,9 @@
 @section('title', 'Customers SHOW')
 
 @section('content')
-    <div>
-        <h1>Customer Show</h1>
-        <hr/>
-        <table>
+    <div class="row m-2">
+        <h1 class="col-12">Customer Show</h1clas>
+        <table class="table table-hover table-bordered table-striped text-white-50">
             <thead>
             <tr>
                 <th>ID</th>
@@ -24,11 +23,12 @@
                 <td>{{ $customer->last_name }}</td>
                 <td>{{ $customer->born_at }}</td>
                 <td>{{ $customer->egn }}</td>
-                <td><a href="{{ route('customers.edit', ['customer' => $customer]) }}">Edit</a></td>
-                <td><form action={{ route('customers.destroy', ['customer' => $customer]) }} method="POST">
+                <td>
+                    <a class="btn btn-warning" href="{{ route('customers.edit', ['customer' => $customer]) }}">Edit</a></td>
+                    <form action={{ route('customers.destroy', ['customer' => $customer]) }} method="POST">
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value="Delete"/>
+                        <input class="btn btn-danger" type="submit" value="Delete"/>
                     </form>
                 </td>
             </tr>
