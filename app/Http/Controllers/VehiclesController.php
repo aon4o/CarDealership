@@ -16,7 +16,7 @@ class VehiclesController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search1'))
+        if($request->has('model_id'))
             $vehicles = Vehicle::where('model_id', '=', $request->model_id)->get();
         else
             $vehicles = Vehicle::all();

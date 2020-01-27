@@ -6,11 +6,9 @@
     <div class="row m-2">
         <h1 class="col-12">Brands</h1>
         <form class="form-inline col-12" action="{{ route('brands.index') }}" method="get">
-            <div class="form-group">
-                <label class="text-white-50 mr-2 mb-2" for="email">Search by name:</label>
-                <input class="form-control mb-2 mr-2" id="email" type="text" name="search" placeholder="Name"/>
-                <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
-            </div>
+            <label class="text-white-50 mr-2 mb-2" for="name">Search by name:</label>
+            <input class="form-control mb-2 mr-2" id="name" type="text" name="search" placeholder="Name"/>
+            <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
         <a class="btn btn-dark btn-outline-light m-2" href="{{ route('brands.create') }}">Create new</a><br>
         <div class="w-100"></div>
@@ -38,7 +36,6 @@
                                 <input class="btn btn-danger" type="submit" value="Delete"/>
                             </form>
                             <form action="{{ route('models.index') }}" method="get" style="display: inline-block;">
-                                <input type="hidden" name="search2" value="true" />
                                 <input type="hidden" name="brand_id" value="{{ $brand->id }}">
                                 <input class="btn btn-info" type="submit" value="Get Models" />
                             </form>

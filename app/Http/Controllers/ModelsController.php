@@ -15,9 +15,9 @@ class ModelsController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search1'))
+        if($request->has('name'))
             $models = Model::where('name', 'like', $request->name . '%')->get();
-        elseif($request->has('search2'))
+        elseif($request->has('brand_id'))
             $models = Model::where('brand_id', '=', $request->brand_id)->get();
         else
             $models = Model::all();

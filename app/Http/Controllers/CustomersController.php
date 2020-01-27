@@ -17,7 +17,7 @@ class CustomersController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has('search')) {
+        if($request->has('first_name')) {
             $customers = Customer::where([
                 ['first_name', 'like', $request->first_name . '%'],
                 ['last_name', 'like', $request->last_name . '%']

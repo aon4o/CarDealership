@@ -3,17 +3,17 @@
 @section('title', 'Models INDEX')
 
 @section('content')
-    <div>
-        <h1>Models</h1>
-        <form action="{{ route('models.index') }}" method="get">
-            <input type="hidden" name="search1" value="true" />
-            Search by name: <input type="text" name="name" value="{{ $_GET['name'] ?? '' }}"/>
-            <input type="submit" value="Search" />
+    <div class="row m-2">
+        <h1 class="col-12">Models</h1>
+        <form class="form-inline col-12" action="{{ route('models.index') }}" method="get">
+            <label class="text-white-50 mr-2 mb-2" for="name">Search by name:</label>
+            <input class="form-control mb-2 mr-2" type="text" name="name" value="{{ $_GET['name'] ?? '' }}"/>
+            <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
         <br>
-        <form action="{{ route('models.index') }}" method="get">
-            <input type="hidden" name="search2" value="true" />
-            Search by brand: <select name="brand_id">
+        <form class="form-inline col-12" action="{{ route('models.index') }}" method="get">
+            <label class="text-white-50 mr-2 mb-2" for="brand_id">Search by brand:</label>
+            <select class="custom-select mb-2 mr-2" name="brand_id">
                 @foreach($brands as $brand)
                     @if(isset($_GET['brand_id']))
                         @if($brand->id == $_GET['brand_id'])
@@ -26,12 +26,14 @@
                     @endif
                 @endforeach
             </select>
-            <input type="submit" value="Search" />
+            <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
         <hr/>
-        <a href="{{ route('models.create') }}">Create new</a><br>
+        <a class="btn btn-dark btn-outline-light m-2" href="{{ route('models.create') }}">Create new</a><br>
+        <div class="w-100"></div>
         @if($models->isNotEmpty())
-            <table>
+        <div class="m-2">
+            <table class="table table-hover table-bordered table-striped text-white-50">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -44,27 +46,26 @@
                 @foreach ($models as $model)
                     <tr>
                         <td>{{ $model->id }}</td>
-                        <td><a href="{{ route('models.show', ['model' => $model]) }}">{{ $model->name }}</a></td>
-                        <td><a href="{{ route('brands.show', ['brand' => $model->brand]) }}">{{ $model->brand->name }}</a></td>
-                        <td><a href="{{ route('models.edit', ['model' => $model]) }}">Edit</a></td>
-                        <td><form action={{ route('models.destroy', ['model' => $model]) }} method="POST">
+                        <td><a class="btn btn-dark" href="{{ route('models.show', ['model' => $model]) }}">{{ $model->name }}</a></td>
+                        <td><a class="btn btn-dark" href="{{ route('brands.show', ['brand' => $model->brand]) }}">{{ $model->brand->name }}</a></td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ route('models.edit', ['model' => $model]) }}">Edit</a>
+                            <form action={{ route('models.destroy', ['model' => $model]) }} method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
                                 <input type='hidden' name='id' value="{{$model->id}}">
-                                <input type="submit" value="Delete"/>
+                                <input class="btn btn-danger" type="submit" value="Delete"/>
                             </form>
-                        </td>
-                        <td>
-                            <form action="{{ route('vehicles.index') }}" method="get">
-                                <input type="hidden" name="search1" value="true" />
+                            <form action="{{ route('vehicles.index') }}" method="get" style="display: inline-block;">
                                 <input type="hidden" name="model_id" value="{{ $model->id }}">
-                                <input type="submit" value="Get Vehicles" />
+                                <input class="btn btn-info" type="submit" value="Get Vehicles" />
                             </form>
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
+        </div>
         @else
             <p>There's nothing to show!</p>
         @endif
