@@ -5,11 +5,10 @@ Route::get('/', function()
     return view('index');
 });
 
-Route::resource('brands', 'BrandsController');
-Route::resource('models', 'ModelsController');
-Route::resource('vehicles', 'VehiclesController');
-Route::resource('customers', 'CustomersController');
-Route::view('test', 'test');
+Route::resource('brands', 'BrandsController')->middleware('auth');
+Route::resource('models', 'ModelsController')->middleware('auth');
+Route::resource('vehicles', 'VehiclesController')->middleware('auth');
+Route::resource('customers', 'CustomersController')->middleware('auth');
 
 Auth::routes();
 
