@@ -1,9 +1,6 @@
 <?php
 
-Route::get('/', function()
-{
-    return view('index');
-});
+Route::view('/', 'home');
 
 Route::resource('brands', 'BrandsController')->middleware('auth');
 Route::resource('models', 'ModelsController')->middleware('auth');
@@ -12,4 +9,6 @@ Route::resource('customers', 'CustomersController')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', function () {
+    return view('home');
+});

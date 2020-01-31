@@ -1,23 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.layout')
+
+@section('title', 'Home')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+    @guest
+        <p class="mt-2">Hello!</p>
+        <p>To access this page you've got to be logged in!</p>
+        <a class="btn btn-dark btn-outline-light" href="{{ route('login') }}">LogIn</a>
+    @endguest
+    @auth
+        <p class="mt-2">Hello, {{ Auth::user()->name }}!</p>
+        <p>You can now access all the pages, create, edit and delete!</p>
+    @endauth
 @endsection

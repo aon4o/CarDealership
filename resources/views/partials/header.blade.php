@@ -17,23 +17,19 @@
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
-                            <a class="btn btn-dark btn-outline-light dropdown-item" href="{{ route('logout') }}"
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                LogOut
+                               document.getElementById('logout-form').submit();">LogOut
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
                         </div>
                     </li>
-                    @if (Route::has('register'))
                         <li class="nav-item ml-2">
                             <a class="btn btn-dark btn-outline-light nav-link" href="{{ route('register') }}">Register</a>
                         </li>
-                    @endif
                 @endguest
             </ul>
 
