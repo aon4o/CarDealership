@@ -27,9 +27,6 @@
                             </form>
                         </div>
                     </li>
-                        <li class="nav-item ml-2">
-                            <a class="btn btn-dark btn-outline-light nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
                 @endguest
             </ul>
 

@@ -10,6 +10,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ route('vehicles.index') }}">Vehicles</a></li>
             <li class="nav-item"><a class="nav-link disabled" href="#">Rented Cars</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('customers.index') }}">Customers</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ route('users.index') }}">Users</a></li>
         </ul>
     </div>
 </nav>
