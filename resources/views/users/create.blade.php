@@ -1,20 +1,32 @@
 @extends('layouts.layout')
 
-@section('title', 'Users CREATE')
+@section('title', 'Users REGISTER')
 
 @section('content')
-    <div class="m-2">
-    <h1>User Create</h1>
-    <form class="form-inline" action="{{ route('users.store') }}" method="post">
-        <div class="form-group">
+    <div class="row m-2">
+        <h1 class="col-12">User Register</h1>
+        <form class="form-inline" action={{ route('register') }} method="POST">
             @csrf
-            <input class="form-control mr-2 mb-2" type="text" name="name" placeholder="Name" autofocus/>
-            @if($errors->has('name'))
-                <p>{{ $errors->first('name') }}</p>
-            @endif
-            <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Submit"/>
-        </div>
-    </form>
+            <div class="form-group col-12">
+                <label class="mb-2 mr-2" for="name">User name:</label>
+                <input class="form-control mb-2" type="text" name="name" autofocus required/>
+            </div>
+            <div class="form-group col-12">
+                <label class="mb-2 mr-2" for="email">Email:</label>
+                <input class="form-control mb-2" type="email" name="email" required/>
+            </div>
+            <div class="form-group col-12">
+                <label class="mb-2 mr-2" for="password">Password:</label>
+                <input class="form-control mb-2" type="password" name="password" required/>
+            </div>
+            <div class="form-group col-12">
+                <label class="mb-2 mr-2" for="password_confirm">Confirm password:</label>
+                <input class="form-control mb-2" type="password" name="password_confirmation" required/>
+            </div>
+            <div class="form-group col-12">
+                <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Submit"/>
+            </div>
+        </form>
     </div>
 @endsection
 

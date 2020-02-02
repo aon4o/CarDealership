@@ -7,10 +7,15 @@
         <h1 class="col-12">Users</h1>
         <form class="form-inline col-12" action="{{ route('users.index') }}" method="get">
             <label class="text-white-50 mr-2 mb-2" for="name">Search by name:</label>
-            <input class="form-control mb-2 mr-2" id="name" type="text" name="search" placeholder="Name"/>
+            <input class="form-control mb-2 mr-2" id="name" type="text" name="name" placeholder="Name" value="{{ $_GET['name'] ?? '' }}"/>
             <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
-        <a class="btn btn-dark btn-outline-light m-2" href="{{ route('users.create') }}">Create new</a><br>
+        <form class="form-inline col-12" action="{{ route('users.index') }}" method="get">
+            <label class="text-white-50 mr-2 mb-2" for="email">Search by email:</label>
+            <input class="form-control mb-2 mr-2" id="email" type="text" name="email" placeholder="Email" value="{{ $_GET['email'] ?? '' }}"/>
+            <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
+        </form>
+        <a class="btn btn-dark btn-outline-light m-2" href="{{ route('users.create') }}">Register new</a><br>
         <div class="w-100"></div>
         @if($users->isNotEmpty())
         <div class="m-2">
@@ -34,12 +39,7 @@
                             <form action={{ route('users.destroy', ['user' => $user]) }} method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <input type='hidden' name='id' value="{{$user->id}}">
                                 <input class="btn btn-danger" type="submit" value="Delete"/>
-                            </form>
-                            <form action="{{ route('models.index') }}" method="get" style="display: inline-block;">
-                                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                                <input class="btn btn-info" type="submit" value="Get Models" />
                             </form>
                         </td>
                     </tr>

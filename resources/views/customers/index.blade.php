@@ -36,7 +36,6 @@
                                 <form action={{ route('customers.destroy', ['customer' => $customer]) }} method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type='hidden' name='id' value="{{$customer->id}}">
                                     <input class="btn btn-danger" type="submit" value="Delete"/>
                                 </form>
                             </td>

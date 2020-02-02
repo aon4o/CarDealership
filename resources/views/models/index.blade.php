@@ -53,7 +53,6 @@
                             <form action={{ route('models.destroy', ['model' => $model]) }} method="POST" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <input type='hidden' name='id' value="{{$model->id}}">
                                 <input class="btn btn-danger" type="submit" value="Delete"/>
                             </form>
                             <form action="{{ route('vehicles.index') }}" method="get" style="display: inline-block;">

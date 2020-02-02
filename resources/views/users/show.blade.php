@@ -11,6 +11,10 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Email</th>
+                    <th>email_verified_at</th>
+                    <th>created_at</th>
+                    <th>updated_at</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -18,6 +22,10 @@
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->email_verified_at }}</td>
+                    <td>{{ $user->created_at }}</td>
+                    <td>{{ $user->updated_at }}</td>
                     <td>
                         <a class="btn btn-warning" href="{{ route('users.edit', ['user' => $user]) }}">Edit</a>
                         <form action={{ route('users.destroy', ['user' => $user]) }} method="POST" style="display: inline-block;">
@@ -25,11 +33,6 @@
                             @method('DELETE')
                             <input type='hidden' name='id' value="{{$user->id}}">
                             <input class="btn btn-danger" type="submit" value="Delete"/>
-                        </form>
-                        <form action="{{ route('models.index') }}" method="get" style="display: inline-block;">
-                            <input type="hidden" name="search2" value="true" />
-                            <input type="hidden" name="user_id" value="{{ $user->id }}">
-                            <input class="btn btn-info" type="submit" value="Get Models" />
                         </form>
                     </td>
                 </tr>

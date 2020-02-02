@@ -46,7 +46,6 @@
                             <form action={{ route('vehicles.destroy', ['vehicle' => $vehicle]) }} method="POST" style="display: inline-block;">
                                     @csrf
                                     @method('DELETE')
-                                    <input type='hidden' name='id' value="{{$vehicle->id}}">
                                     <input class="btn btn-danger" type="submit" value="Delete"/>
                                 </form>
                             </td>
