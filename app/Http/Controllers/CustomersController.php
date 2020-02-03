@@ -27,8 +27,6 @@ class CustomersController extends Controller
             $customers = Customer::all();
         }
 
-        //todo rework the search method
-
         return view('customers.index', ['customers' => $customers]);
     }
 

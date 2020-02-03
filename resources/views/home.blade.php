@@ -6,7 +6,7 @@
     @guest
         <p class="mt-2">Hello!</p>
         <p>To access this page you've got to be logged in!</p>
-        <a class="btn btn-dark btn-outline-light" href="{{ route('login') }}">LogIn</a>
+        <a class="btn btn-dark btn-outline-light mb-2" href="{{ route('login') }}">LogIn</a>
     @endguest
     @auth
         <p class="mt-2">Hello, {{ Auth::user()->name }}!</p>

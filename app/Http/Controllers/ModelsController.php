@@ -16,14 +16,16 @@ class ModelsController extends Controller
     public function index(Request $request)
     {
         if($request->has('name'))
-            $models = Model::where('name', 'like', $request->name . '%')->get();
-        elseif($request->has('brand_id'))
-            $models = Model::where('brand_id', '=', $request->brand_id)->get();
+        {
+            $models = Model::where([
+                ['name', 'like', $request->name . '%'],
+                ['brand_id', '=', $request->brand_id]
+            ])->get();
+        }
         else
+        {
             $models = Model::all();
-
-        //todo rework the search method
-
+        }
         $brands = Brand::all();
         return view('models.index', ['models'=>$models, 'brands'=>$brands]);
     }

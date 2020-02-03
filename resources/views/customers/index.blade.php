@@ -6,12 +6,21 @@
     <div class="row m-2">
         <h1 class="col-12">Customers</h1>
         <form class="col-12 form-inline" action="{{ route('customers.index') }}" method="get">
-            <label class="text-white-50 mr-2 mb-2" for="first_name">Search by first name:</label>
-            <input class="form-control mb-2 mr-2" id="name" type="text" name="first_name" value="{{ $_GET['first_name'] ?? ''}}"/>
-            <label class="text-white-50 mr-2 mb-2" for="last_name">Search by last name:</label>
-            <input class="form-control mb-2 mr-2" id="name" type="text" name="last_name" value="{{ $_GET['last_name'] ?? '' }}"/>
+            <div class="form-group col-12">
+                <label class="text-white-50 mr-2 mb-2" for="first_name">Search by first name:</label>
+                <input class="form-control mb-2 mr-2" id="name" type="text" name="first_name" value="{{ $_GET['first_name'] ?? ''}}"/>
+            </div>
+            <div class="form-group col-12">
+                <label class="text-white-50 mr-2 mb-2" for="last_name">Search by last name:</label>
+                <input class="form-control mb-2 mr-2" id="name" type="text" name="last_name" value="{{ $_GET['last_name'] ?? '' }}"/>
+            </div>
             <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
+        @if(isset($_GET['first_name']))
+            <form class="form-inline col-12" action="{{ route('customers.index') }}" method="get">
+                <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Reset search" />
+            </form>
+        @endif
         <a class="btn btn-dark btn-outline-light m-2" href="{{ route('customers.create') }}">Create new</a><br>
         <div class="w-100"></div>
         @if($customers->isNotEmpty())

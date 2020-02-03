@@ -7,13 +7,18 @@
         <h1 class="col-12">Brands</h1>
         <form class="form-inline col-12" action="{{ route('brands.index') }}" method="get">
             <label class="text-white-50 mr-2 mb-2" for="name">Search by name:</label>
-            <input class="form-control mb-2 mr-2" id="name" type="text" name="search" placeholder="Name"/>
+            <input class="form-control mb-2 mr-2" id="name" type="text" name="search" placeholder="Name" value="{{ $_GET['search'] ?? '' }}"/>
             <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Search" />
         </form>
-        <a class="btn btn-dark btn-outline-light m-2" href="{{ route('brands.create') }}">Create new</a><br>
+        @if(isset($_GET['search']))
+            <form class="form-inline col-12" action="{{ route('brands.index') }}" method="get">
+                <input class="btn btn-dark btn-outline-light mb-2" type="submit" value="Reset search" />
+            </form>
+        @endif
+        <a class="btn btn-dark btn-outline-light ml-3 m-2" href="{{ route('brands.create') }}">Create new</a><br>
         <div class="w-100"></div>
         @if($brands->isNotEmpty())
-        <div class="m-2">
+        <div class="m-2 ml-3">
             <table class="table table-hover table-bordered table-striped text-white-50">
                 <thead>
                 <tr>
@@ -45,7 +50,7 @@
             </table>
         </div>
         @else
-            <p>There's nothing to show!</p>
+            <p class="m-2 ml-3">There's nothing to show!</p>
         @endif
     </div>
 @endsection

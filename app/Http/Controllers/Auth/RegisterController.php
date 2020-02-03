@@ -30,6 +30,12 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
